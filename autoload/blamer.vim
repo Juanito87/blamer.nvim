@@ -311,6 +311,8 @@ function! blamer#BufferEnter() abort
   endif
 
   let l:is_tracked = blamer#IsBufferGitTracked()
+  print(vim.inspect(is_tracked))
+  print(vim.inspect(is_windows))
   if l:is_tracked
     let s:blamer_buffer_enabled = 1
     call blamer#UpdateGitUserConfig()
