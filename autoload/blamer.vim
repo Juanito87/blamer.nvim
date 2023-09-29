@@ -32,6 +32,9 @@ let s:missing_popup_feature = !has('nvim') && !exists('*popup_create')
 let s:blamer_buffer_enabled = 0
 let s:blamer_show_enabled = 0
 
+function Debugeer(arg)
+  print(vim.inspect(arg))
+endfunction 
 
 function! s:GetRelativeTime(commit_timestamp) abort
   let l:current_timestamp = localtime()
@@ -311,8 +314,8 @@ function! blamer#BufferEnter() abort
   endif
 
   let l:is_tracked = blamer#IsBufferGitTracked()
-  print(vim.inspect(is_tracked))
-  print(vim.inspect(is_windows))
+  Debugeer(is_tracked)
+  Debugeer(is_windows)
   if l:is_tracked
     let s:blamer_buffer_enabled = 1
     call blamer#UpdateGitUserConfig()
