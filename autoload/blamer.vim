@@ -26,12 +26,11 @@ let s:blamer_show_in_insert_modes = get(g:, 'blamer_show_in_insert_modes', 1)
 let s:blamer_timer_id = -1
 let s:blamer_relative_time = get(g:, 'blamer_relative_time', 0)
 
-let s:is_windows = has('win16') || has('win32') || has('win64') || has('win95')
+" let s:is_windows = has('win16') || has('win32') || has('win64') || has('win95')
 let s:missing_popup_feature = !has('nvim') && !exists('*popup_create')
 
 let s:blamer_buffer_enabled = 0
 let s:blamer_show_enabled = 0
-
 
 function! s:GetRelativeTime(commit_timestamp) abort
   let l:current_timestamp = localtime()
@@ -257,7 +256,7 @@ function! blamer#Show() abort
   let l:messages = blamer#GetMessages(l:file_path, l:line_numbers[0], l:line_count)
   let l:index = 0
 
-	for line_number in l:line_numbers
+  for line_number in l:line_numbers
     let l:message = l:messages[l:index]
     if has('nvim')
       call blamer#SetVirtualText(l:buffer_number, line_number, l:message)
@@ -393,9 +392,9 @@ function! blamer#Init() abort
 endfunction
 
 " from neomru
-function! s:substitute_path_separator(path) abort
-  return s:is_windows ? substitute(a:path, '\\', '/', 'g') : a:path
-endfunction
+" function! s:substitute_path_separator(path) abort
+"   return s:is_windows ? substitute(a:path, '\\', '/', 'g') : a:path
+" endfunction
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
